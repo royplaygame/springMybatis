@@ -11,6 +11,7 @@
 	
 	<mappers>
 		<mapper resource="sqlmap/UserInfo.xml" />
-		<package name="com.hy.ly.mapper"/>
+		<!-- 包扫描，在Mapper包下面的mapper.java和mapper.xml名称要保持一致，如果使用了mapper的批量扫描，这个配置可以不用配置 -->
+		<!-- <package name="com.hy.ly.mapper"/> -->
 	</mappers>
 </configuration>

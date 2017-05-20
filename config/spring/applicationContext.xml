@@ -51,4 +51,19 @@
 	<bean id="userInfoDao" class="com.hy.ly.dao.UserInfoDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<!-- mapper的配置,MapperFactoryBean可以根据Mapper接口生成代理对象 -->
+	<!-- 此方法需要配置所有的mapper进行配置，比较麻烦 -->
+	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<!-- mapperInterface指定mapper接口 -->
+		<property name="mapperInterface" value="com.hy.ly.mapper.UserInfoMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- mapper的批量扫描，从mapper包中扫描mapper接口，并自动的创建代理对象并且注入到spring容器中 规范：在Mapper包下面的mapper.java和mapper.xml名称要保持一致,
+	自动扫描：出来的bean的名称为：mapper的类名首字母小写 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定扫描的包名 -->
+		<property name="basePackage" value="com.hy.ly.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
 </beans> 
